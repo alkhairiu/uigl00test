@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section className="max-w-6xl mx-auto px-6 md:px-8 pt-14 md:pt-20 pb-8 text-center">
       <span className="eyebrow">Season 2026</span>
-      <h1 className="heading-hero text-4xl md:text-6xl leading-tight mt-3">
+      <h1 className="font-bold font-serif text-4xl md:text-6xl leading-tight mt-3">
         Buktikan Timmu Layak
         <br className="hidden md:block" /> Jadi <span className="text-gold-300">Juara Arena</span>
       </h1>

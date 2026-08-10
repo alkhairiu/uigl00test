@@ -60,6 +60,31 @@ export const iconMap = {
   crosshair: CrosshairIcon,
 };
 
+export function PhoenixLogo({ className = "w-9 h-9" }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M6 32c0-8 4-14 8-18-1 6 2 8 4 4C20 12 22 8 24 4c2 4 4 8 6 14 2 4 5 2 4-4 4 4 8 10 8 18 0 7-8 12-18 12S6 39 6 32Z"
+        fill="url(#phoenixWing)"
+      />
+      <path
+        d="M24 14c3 0 5 4 5 10 0 6-2 12-5 18-3-6-5-12-5-18 0-6 2-10 5-10Z"
+        fill="url(#phoenixBody)"
+      />
+      <defs>
+        <linearGradient id="phoenixWing" x1="6" y1="4" x2="42" y2="44" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#124A85" />
+          <stop offset="1" stopColor="#081B33" />
+        </linearGradient>
+        <linearGradient id="phoenixBody" x1="19" y1="14" x2="29" y2="42" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#F5C451" />
+          <stop offset="1" stopColor="#B8860B" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
+
 export function FlameLogo({ className = "w-9 h-9" }) {
   return (
     <svg viewBox="0 0 48 48" fill="none" className={className} aria-hidden="true">
