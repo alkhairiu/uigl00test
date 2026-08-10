@@ -1,0 +1,78 @@
+// Ikon generik bergaya "esport" untuk tiap game.
+// Sengaja dibuat generik/abstrak (bukan reproduksi logo resmi brand
+// seperti Mobile Legends, PUBG, Valorant, eFootball) supaya bebas
+// isu hak cipta & trademark. Ganti dengan logo resmi (file gambar)
+// di src/assets/images/ kapan pun kamu sudah punya lisensinya.
+
+export function ControllerIcon({ className = "w-10 h-10" }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M14 18h20a8 8 0 0 1 8 8.4l-.6 6a5 5 0 0 1-8.6 3.1L29 31.6a3 3 0 0 0-2.2-1H21.2a3 3 0 0 0-2.2 1l-3.8 3.9a5 5 0 0 1-8.6-3.1l-.6-6A8 8 0 0 1 14 18Z"
+        fill="currentColor"
+      />
+      <circle cx="16" cy="26" r="1.6" fill="#0B2A4D" />
+      <path d="M16 23.4v5.2M13.4 26h5.2" stroke="#0B2A4D" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="33" cy="24" r="1.4" fill="#0B2A4D" />
+      <circle cx="29" cy="28" r="1.4" fill="#0B2A4D" />
+    </svg>
+  );
+}
+
+export function BallIcon({ className = "w-10 h-10" }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className} aria-hidden="true">
+      <circle cx="24" cy="24" r="16" fill="currentColor" />
+      <path
+        d="M24 14l5 3.6-1.9 5.9h-6.2L19 17.6 24 14ZM12.5 22l4.4 3.2M35.5 22l-4.4 3.2M16 33l4.6-1.6M32 33l-4.6-1.6M17.9 23.5l-1.6 4.9M30.1 23.5l1.6 4.9"
+        stroke="#0B2A4D"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function ShieldIcon({ className = "w-10 h-10" }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className} aria-hidden="true">
+      <path d="M24 6 38 11v11c0 10-6 17.5-14 20-8-2.5-14-10-14-20V11L24 6Z" fill="currentColor" />
+      <path d="M18 24.5 22 28.5 30.5 19.5" stroke="#0B2A4D" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function CrosshairIcon({ className = "w-10 h-10" }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className} aria-hidden="true">
+      <circle cx="24" cy="24" r="15" stroke="currentColor" strokeWidth="3" />
+      <circle cx="24" cy="24" r="4" fill="currentColor" />
+      <path d="M24 3v9M24 36v9M3 24h9M36 24h9" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export const iconMap = {
+  controller: ControllerIcon,
+  ball: BallIcon,
+  shield: ShieldIcon,
+  crosshair: CrosshairIcon,
+};
+
+export function FlameLogo({ className = "w-9 h-9" }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M24 4c2 6-4 8-4 13 0 3 2 5 4 5s4-2 4-5c3 3 6 8 6 13 0 7.7-6.3 14-14 14S6 37.7 6 30c0-9 8-13 10-20 2 4 3 6 6 6-1-4 0-8 2-12Z"
+        fill="url(#flameGrad)"
+      />
+      <defs>
+        <linearGradient id="flameGrad" x1="6" y1="4" x2="30" y2="44" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#F5C451" />
+          <stop offset="1" stopColor="#B8860B" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
