@@ -2,42 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ------------------------------------------------------------------
-  CUSTOM FONTS — Lucidity (heading) & Harlow Solid (sub heading)
-  Kedua font ini adalah font berlisensi/tidak tersedia di Google Fonts.
-  Taruh file font aslinya (.woff2/.woff/.ttf) di folder:
-    src/assets/fonts/
-  lalu sesuaikan nama file di bawah ini. Selama file belum ada,
-  browser otomatis jatuh ke fallback (Baloo 2 / Playfair Display)
-  yang sudah diatur di tailwind.config.js, jadi tampilan tetap rapi.
-------------------------------------------------------------------- */
+/* ================================================================
+   CUSTOM FONTS
+   ================================================================ */
+
+/* Lucidity — Heading */
 @font-face {
   font-family: "Lucidity";
-  src: url("../assets/fonts/Lucidity.ttf") format("truetype");
+  src: url("../assets/fonts/Lucidity.woff2") format("woff2"),
+       url("../assets/fonts/Lucidity.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
+/*
+  Harlow Solid
+  Jika file HarlowSolid.woff2 belum ada, browser akan menggunakan
+  fallback cursive.
+*/
 @font-face {
   font-family: "Harlow Solid";
-  src: url("../fonts/HarlowSolid.woff2") format("woff2");
+  src: url("../assets/fonts/HarlowSolid.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
+
+
+/* ================================================================
+   BASE
+   ================================================================ */
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply font-body bg-navy-900 text-white antialiased;
+  @apply bg-navy-900 text-white antialiased;
+  font-family: "Montserrat", sans-serif;
 }
+
+
+/* ================================================================
+   FONT UTILITIES
+   ================================================================ */
+
+@layer utilities {
+  .font-heading {
+    font-family: "Lucidity", serif;
+  }
+
+  .font-subheading {
+    font-family: "Harlow Solid", cursive;
+  }
+
+  .font-body {
+    font-family: "Montserrat", sans-serif;
+  }
+}
+
+
+/* ================================================================
+   SELECTION
+   ================================================================ */
 
 ::selection {
   @apply bg-gold-400 text-navy-900;
 }
 
-/* Focus states kept visible for keyboard users */
+
+/* ================================================================
+   FOCUS STATES
+   ================================================================ */
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -46,6 +84,11 @@ textarea:focus-visible {
   outline: 2px solid #f5c451;
   outline-offset: 2px;
 }
+
+
+/* ================================================================
+   REDUCED MOTION
+   ================================================================ */
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -58,35 +101,79 @@ textarea:focus-visible {
   }
 }
 
-/* Reusable utility layer */
+
+/* ================================================================
+   COMPONENTS
+   ================================================================ */
+
 @layer components {
+
+  /* Eyebrow / small subheading */
   .eyebrow {
-    @apply font-subheading italic text-gold-300 tracking-wide text-lg md:text-xl;
+    @apply italic text-gold-300 tracking-wide text-lg md:text-xl;
+    font-family: "Harlow Solid", cursive;
   }
 
+
+  /* Hero Heading */
   .heading-hero {
-    @apply font-heading text-white uppercase tracking-wide;
+    @apply text-white uppercase tracking-wide;
+    font-family: "Lucidity", serif;
     -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.15);
   }
 
+
+  /* Gold Button */
   .btn-gold {
-    @apply inline-flex items-center justify-center rounded-full bg-gold-gradient
-      text-navy-900 font-body font-bold px-6 py-3 shadow-gold
-      transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-glow-purple
+    @apply inline-flex items-center justify-center rounded-full
+      bg-gold-gradient
+      text-navy-900
+      font-body
+      font-bold
+      px-6
+      py-3
+      shadow-gold
+      transition-transform
+      duration-200
+      hover:-translate-y-0.5
+      hover:shadow-glow-purple
       active:translate-y-0;
   }
 
+
+  /* Outline Button */
   .btn-outline {
-    @apply inline-flex items-center justify-center rounded-full border border-gold-400/70
-      text-gold-300 font-body font-semibold px-6 py-3
-      transition-colors duration-200 hover:bg-gold-400/10;
+    @apply inline-flex items-center justify-center rounded-full
+      border
+      border-gold-400/70
+      text-gold-300
+      font-body
+      font-semibold
+      px-6
+      py-3
+      transition-colors
+      duration-200
+      hover:bg-gold-400/10;
   }
 
+
+  /* Gold Panel */
   .panel-gold {
-    @apply bg-gold-gradient rounded-xl2 border border-gold-300/60 shadow-gold;
+    @apply bg-gold-gradient
+      rounded-xl2
+      border
+      border-gold-300/60
+      shadow-gold;
   }
 
+
+  /* Gold Card */
   .card-glow {
-    @apply bg-gold-gradient rounded-2xl shadow-gold transition-transform duration-300 hover:-translate-y-1;
+    @apply bg-gold-gradient
+      rounded-2xl
+      shadow-gold
+      transition-transform
+      duration-300
+      hover:-translate-y-1;
   }
 }
