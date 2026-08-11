@@ -16,14 +16,10 @@
   font-display: swap;
 }
 
-/*
-  Harlow Solid
-  Jika file HarlowSolid.woff2 belum ada, browser akan menggunakan
-  fallback cursive.
-*/
+/* Harlow Solid — Subheading */
 @font-face {
   font-family: "Harlow Solid";
-  src: url("../assets/fonts/HarlowSolid.woff2") format("woff2");
+  src : url("../assets/fonts/HarlowSolid.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -49,14 +45,19 @@ body {
    ================================================================ */
 
 @layer utilities {
+
+  /* Heading */
   .font-heading {
     font-family: "Lucidity", serif;
   }
 
+  /* Subheading */
   .font-subheading {
     font-family: "Harlow Solid", cursive;
+    font-weight: 400;
   }
 
+  /* Body */
   .font-body {
     font-family: "Montserrat", sans-serif;
   }
@@ -108,22 +109,33 @@ textarea:focus-visible {
 
 @layer components {
 
-  /* Eyebrow / small subheading */
-  .eyebrow {
-    @apply italic text-gold-300 tracking-wide text-lg md:text-xl;
+  /* ==============================================================
+     SUBHEADING
+     ============================================================== */
+
+  .subheading {
     font-family: "Harlow Solid", cursive;
+    font-weight: 400;
   }
 
 
-  /* Hero Heading */
+  /* ==============================================================
+     HERO HEADING
+     ============================================================== */
+
   .heading-hero {
     @apply text-white uppercase tracking-wide;
+
     font-family: "Lucidity", serif;
+
     -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.15);
   }
 
 
-  /* Gold Button */
+  /* ==============================================================
+     GOLD BUTTON
+     ============================================================== */
+
   .btn-gold {
     @apply inline-flex items-center justify-center rounded-full
       bg-gold-gradient
@@ -141,7 +153,10 @@ textarea:focus-visible {
   }
 
 
-  /* Outline Button */
+  /* ==============================================================
+     OUTLINE BUTTON
+     ============================================================== */
+
   .btn-outline {
     @apply inline-flex items-center justify-center rounded-full
       border
@@ -157,7 +172,10 @@ textarea:focus-visible {
   }
 
 
-  /* Gold Panel */
+  /* ==============================================================
+     GOLD PANEL
+     ============================================================== */
+
   .panel-gold {
     @apply bg-gold-gradient
       rounded-xl2
@@ -167,7 +185,10 @@ textarea:focus-visible {
   }
 
 
-  /* Gold Card */
+  /* ==============================================================
+     GOLD CARD
+     ============================================================== */
+
   .card-glow {
     @apply bg-gold-gradient
       rounded-2xl

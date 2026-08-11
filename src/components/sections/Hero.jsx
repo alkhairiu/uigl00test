@@ -1,33 +1,188 @@
 import { Link } from "react-router-dom";
 
 const stats = [
-  { label: "Peserta Terdaftar", value: "1.200+" },
-  { label: "Total Hadiah", value: "Rp 53 Juta" },
-  { label: "Kategori Game", value: "4" },
+  {
+    label: "Peserta Terdaftar",
+    value: "1.200+",
+  },
+  {
+    label: "Total Hadiah",
+    value: "Rp 53 Juta",
+  },
+  {
+    label: "Kategori Game",
+    value: "4",
+  },
 ];
 
 export default function Hero() {
   return (
-    <section className="max-w-6xl mx-auto px-6 md:px-8 pt-14 md:pt-20 pb-8 text-center">
-      <span className="eyebrow">Season 2026</span>
-      <h1 className="font-bold font-serif text-4xl md:text-6xl leading-tight mt-3">
+    <section
+      className="
+        w-full
+        max-w-[1500px]
+        mx-auto
+        px-6
+        md:px-10
+        lg:px-16
+        pt-20
+        md:pt-28
+        pb-10
+        md:pb-14
+        text-center
+      "
+    >
+      {/* =========================
+          SEASON
+      ========================== */}
+      <h2
+        className="
+          font-subheading
+          text-gold-300
+          text-2xl
+          md:text-3xl
+          tracking-wide
+        "
+      >
+        Season 2026
+      </h2>
+
+      {/* =========================
+          HERO TITLE
+      ========================== */}
+      <h1
+        className="
+          font-heading
+          text-white
+          text-5xl
+          md:text-7xl
+          lg:text-8xl
+          leading-[0.95]
+          tracking-tight
+          mt-5
+        "
+      >
         Buktikan Timmu Layak
-        <br className="hidden md:block" /> Jadi <span className="text-gold-300">Juara Arena</span>
+        <br className="hidden md:block" />
+        Jadi{" "}
+        <span className="text-gold-300">
+          Juara Arena
+        </span>
       </h1>
-      <p className="font-body text-white/70 max-w-xl mx-auto mt-5 text-sm md:text-base">
-        Turnamen esport antar sekolah &amp; kampus terbesar tahun ini. Pilih game favoritmu,
-        daftarkan tim, dan rebut jalanmu menuju grand final.
+
+      {/* =========================
+          DESCRIPTION
+      ========================== */}
+      <p
+        className="
+          font-body
+          text-white/70
+          max-w-3xl
+          mx-auto
+          mt-7
+          text-base
+          md:text-lg
+          leading-relaxed
+        "
+      >
+        Turnamen esport antar sekolah &amp; kampus terbesar tahun ini.
+        Pilih game favoritmu, daftarkan tim, dan rebut jalanmu menuju
+        grand final.
       </p>
-      <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-        <Link to="/plan" className="btn-gold">Lihat Kompetisi</Link>
-        <Link to="/register" className="btn-outline">Daftar Sekarang</Link>
+
+      {/* =========================
+          CTA BUTTONS
+      ========================== */}
+      <div
+        className="
+          flex
+          flex-wrap
+          items-center
+          justify-center
+          gap-4
+          md:gap-6
+          mt-9
+        "
+      >
+        <Link
+          to="/plan"
+          className="
+            btn-gold
+            min-w-[190px]
+            text-base
+            md:text-lg
+          "
+        >
+          Lihat Kompetisi
+        </Link>
+
+        <Link
+          to="/register"
+          className="
+            btn-outline
+            min-w-[190px]
+            text-base
+            md:text-lg
+          "
+        >
+          Daftar Sekarang
+        </Link>
       </div>
 
-      <div className="grid grid-cols-3 gap-4 md:gap-6 mt-14">
+      {/* =========================
+          STATISTICS
+      ========================== */}
+      <div
+        className="
+          grid
+          grid-cols-1
+          md:grid-cols-3
+          gap-5
+          md:gap-8
+          mt-16
+          md:mt-20
+        "
+      >
         {stats.map((s) => (
-          <div key={s.label} className="card-glow px-3 py-6 md:py-8">
-            <p className="font-heading text-2xl md:text-3xl text-navy-900">{s.value}</p>
-            <p className="font-body text-xs md:text-sm text-navy-900/70 mt-1">{s.label}</p>
+          <div
+            key={s.label}
+            className="
+              card-glow
+              w-full
+              min-h-[150px]
+              md:min-h-[175px]
+              flex
+              flex-col
+              items-center
+              justify-center
+              px-6
+              py-8
+              md:py-10
+            "
+          >
+            <p
+              className="
+                font-heading
+                text-3xl
+                md:text-4xl
+                lg:text-5xl
+                text-navy-900
+              "
+            >
+              {s.value}
+            </p>
+
+            <p
+              className="
+                font-body
+                text-sm
+                md:text-base
+                text-navy-900/70
+                mt-2
+              "
+            >
+              {s.label}
+            </p>
           </div>
         ))}
       </div>
