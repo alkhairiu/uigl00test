@@ -24,14 +24,9 @@ export default {
         },
       },
       fontFamily: {
-        // Display / big headings -> "Lucidity" (falls back to a chunky
-        // rounded Google font until the licensed Lucidity files are
-        // dropped into src/assets/fonts)
-        heading: ["Lucidity", "Baloo 2", "Fredoka", "sans-serif"],
-        // Section eyebrows / sub headings -> "Harlow Solid"
-        subheading: ["Harlow Solid", "Playfair Display", "serif"],
-        // Body copy
-        body: ["Montserrat", "system-ui", "sans-serif"],
+        lucidity: ["Lucidity", "serif"],
+        harlow: ["Harlow Solid", "cursive"],
+        montserrat: ["Montserrat", "sans-serif"]
       },
       backgroundImage: {
         "navy-gradient": "linear-gradient(160deg, #050F1F 0%, #0B2A4D 45%, #124A85 100%)",

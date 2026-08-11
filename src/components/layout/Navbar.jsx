@@ -22,7 +22,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
+    <header className="fixed top-2 left-0 right-0 z-50 px-12 pt-4">
       <nav
         className={`mx-auto max-w-6xl flex items-center justify-between rounded-full bg-gold-gradient
         px-4 md:px-6 py-2.5 shadow-gold transition-shadow
@@ -40,13 +40,13 @@ export default function Navbar() {
             className="w-10 h-10 md:w-11 md:h-11 object-contain"
           />
 
-          <span className="font-body text-2xl md:text-3xl font-medium text-navy-900 tracking-wide">
-            UI Games League
-          </span>
+          <span className="text-[24px] text-navy-900"style={{ fontFamily: "Lucidity" }}>
+  UI Games League
+</span>
         </Link>
 
         {/* DESKTOP NAVIGATION */}
-        <ul className="hidden md:flex items-center gap-8 font-body font-semibold text-navy-900 text-sm">
+        <ul className="hidden md:flex items-center gap-8 font-body font-semibold text-black text-sm">
           {links.map((l) => (
             <li key={l.label}>
               <NavLink

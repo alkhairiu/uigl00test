@@ -13,18 +13,16 @@
 ------------------------------------------------------------------- */
 @font-face {
   font-family: "Lucidity";
-  src: url("/src/assets/fonts/Lucidity.woff2") format("woff2"),
-    url("/src/assets/fonts/Lucidity.ttf") format("truetype");
-  font-weight: 400 800;
-  font-display: swap;
+  src: url("../assets/fonts/Lucidity.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
   font-family: "Harlow Solid";
-  src: url("/src/assets/fonts/HarlowSolid.woff2") format("woff2"),
-    url("/src/assets/fonts/HarlowSolid.ttf") format("truetype");
+  src: url("../fonts/HarlowSolid.woff2") format("woff2");
   font-weight: 400;
-  font-display: swap;
+  font-style: normal;
 }
 
 html {
