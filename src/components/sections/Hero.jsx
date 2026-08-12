@@ -26,49 +26,39 @@ export default function Hero() {
         md:px-10
         lg:px-16
         pt-20
-        md:pt-28
-        pb-10
-        md:pb-14
+        md:pt-40
+        pb-20
+        md:pb-40
         text-center
       "
     >
       {/* =========================
           SEASON
       ========================== */}
-      <h2
-        className="
-          font-subheading
-          text-gold-300
-          text-2xl
-          md:text-3xl
-          tracking-wide
-        "
-      >
-        Season 2026
-      </h2>
+    
 
       {/* =========================
           HERO TITLE
       ========================== */}
-      <h1
+      <h2
         className="
-          font-heading
+          font-subheading
           text-white
-          text-5xl
-          md:text-7xl
+          text-3xl
+          md:text-6xl
           lg:text-8xl
           leading-[0.95]
           tracking-tight
           mt-5
         "
       >
-        Buktikan Timmu Layak
+        Trive
         <br className="hidden md:block" />
-        Jadi{" "}
+        To{" "}
         <span className="text-gold-300">
-          Juara Arena
+          Triumph
         </span>
-      </h1>
+      </h2>
 
       {/* =========================
           DESCRIPTION
