@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const links = [
-  { to: "/#about", label: "About Us" },
-  { to: "/#timeline", label: "Timeline" },
+  { to: "#about", label: "About Us" },
+  { to: "#timeline", label: "Timeline" },
   { to: "/plan", label: "Competition" },
 ];
 
@@ -12,7 +12,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 12);
+    };
 
     window.addEventListener("scroll", onScroll);
 
@@ -20,6 +22,20 @@ export default function Navbar() {
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
+
+  // Scroll ke section
+  const handleScroll = (id) => {
+    const element = document.querySelector(id);
+
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
+    setOpen(false);
+  };
 
   return (
     <header className="fixed top-2 left-0 right-0 z-50 px-12 pt-4">
@@ -40,21 +56,34 @@ export default function Navbar() {
             className="w-10 h-10 md:w-11 md:h-11 object-contain"
           />
 
-          <span className="text-[24px] text-navy-900"style={{ fontFamily: "Lucidity" }}>
-  UI Games League
-</span>
+          <span
+            className="text-[24px] text-navy-900"
+            style={{ fontFamily: "Lucidity" }}
+          >
+            UI Games League
+          </span>
         </Link>
 
         {/* DESKTOP NAVIGATION */}
         <ul className="hidden md:flex items-center gap-8 font-body font-semibold text-black text-sm">
           {links.map((l) => (
             <li key={l.label}>
-              <NavLink
-                to={l.to}
-                className="hover:opacity-70 transition-opacity"
-              >
-                {l.label}
-              </NavLink>
+              {l.to.startsWith("#") ? (
+                <button
+                  type="button"
+                  onClick={() => handleScroll(l.to)}
+                  className="hover:opacity-70 transition-opacity"
+                >
+                  {l.label}
+                </button>
+              ) : (
+                <Link
+                  to={l.to}
+                  className="hover:opacity-70 transition-opacity"
+                >
+                  {l.label}
+                </Link>
+              )}
             </li>
           ))}
         </ul>
@@ -107,13 +136,23 @@ export default function Navbar() {
           <ul className="flex flex-col gap-3 text-gold-200 font-semibold">
             {links.map((l) => (
               <li key={l.label}>
-                <NavLink
-                  to={l.to}
-                  onClick={() => setOpen(false)}
-                  className="block py-1"
-                >
-                  {l.label}
-                </NavLink>
+                {l.to.startsWith("#") ? (
+                  <button
+                    type="button"
+                    onClick={() => handleScroll(l.to)}
+                    className="block py-1 text-left w-full"
+                  >
+                    {l.label}
+                  </button>
+                ) : (
+                  <Link
+                    to={l.to}
+                    onClick={() => setOpen(false)}
+                    className="block py-1"
+                  >
+                    {l.label}
+                  </Link>
+                )}
               </li>
             ))}
 
