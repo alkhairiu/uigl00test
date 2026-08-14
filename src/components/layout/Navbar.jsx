@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const links = [
   { to: "#about", label: "About Us" },
@@ -11,6 +11,10 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Detect scroll
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 12);
@@ -23,18 +27,50 @@ export default function Navbar() {
     };
   }, []);
 
-  // Scroll ke section
-  const handleScroll = (id) => {
-    const element = document.querySelector(id);
+  // Handle hash setelah pindah halaman
+  useEffect(() => {
+    if (location.pathname !== "/" || !location.hash) return;
 
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+    const scrollToSection = () => {
+      const element = document.querySelector(location.hash);
+
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    };
+
+    // Kasih waktu HomePage untuk render
+    const timer = setTimeout(scrollToSection, 100);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname, location.hash]);
+
+  // Handle About Us / Timeline
+  const handleScroll = (id) => {
+    setOpen(false);
+
+    // Kalau sedang di Home
+    if (location.pathname === "/") {
+      const element = document.querySelector(id);
+
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+
+      // Update URL tanpa reload
+      window.history.replaceState(null, "", `/${id}`);
+
+      return;
     }
 
-    setOpen(false);
+    // Kalau sedang di Competition atau halaman lain
+    navigate(`/${id}`);
   };
 
   return (
@@ -44,15 +80,18 @@ export default function Navbar() {
         px-4 md:px-6 py-2.5 shadow-gold transition-shadow
         ${scrolled ? "shadow-glow-purple" : ""}`}
       >
-        {/* LOGO */}
+        {/* =========================
+            LOGO
+        ========================= */}
         <Link
           to="/"
           className="flex items-center gap-3"
-          aria-label="ARENA Home"
+          aria-label="UI Games League Home"
+          onClick={() => setOpen(false)}
         >
           <img
             src="/vite.svg"
-            alt="ARENA Logo"
+            alt="UI Games League Logo"
             className="w-10 h-10 md:w-11 md:h-11 object-contain"
           />
 
@@ -64,31 +103,35 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* DESKTOP NAVIGATION */}
+        {/* =========================
+            DESKTOP NAVIGATION
+        ========================= */}
         <ul className="hidden md:flex items-center gap-8 font-body font-semibold text-black text-sm">
-          {links.map((l) => (
-            <li key={l.label}>
-              {l.to.startsWith("#") ? (
+          {links.map((link) => (
+            <li key={link.label}>
+              {link.to.startsWith("#") ? (
                 <button
                   type="button"
-                  onClick={() => handleScroll(l.to)}
+                  onClick={() => handleScroll(link.to)}
                   className="hover:opacity-70 transition-opacity"
                 >
-                  {l.label}
+                  {link.label}
                 </button>
               ) : (
                 <Link
-                  to={l.to}
+                  to={link.to}
                   className="hover:opacity-70 transition-opacity"
                 >
-                  {l.label}
+                  {link.label}
                 </Link>
               )}
             </li>
           ))}
         </ul>
 
-        {/* DESKTOP REGISTER */}
+        {/* =========================
+            REGISTER DESKTOP
+        ========================= */}
         <div className="hidden md:block">
           <Link
             to="/register"
@@ -98,12 +141,14 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* MOBILE MENU BUTTON */}
+        {/* =========================
+            MOBILE MENU BUTTON
+        ========================= */}
         <button
           className="md:hidden text-navy-900 p-1"
           aria-label={open ? "Tutup menu" : "Buka menu"}
           aria-expanded={open}
-          onClick={() => setOpen((o) => !o)}
+          onClick={() => setOpen((prev) => !prev)}
         >
           <svg
             width="26"
@@ -130,32 +175,35 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* MOBILE MENU */}
+      {/* =========================
+          MOBILE MENU
+      ========================= */}
       {open && (
         <div className="md:hidden mx-auto max-w-6xl mt-2 rounded-2xl bg-navy-800 border border-gold-400/30 p-4 font-body">
           <ul className="flex flex-col gap-3 text-gold-200 font-semibold">
-            {links.map((l) => (
-              <li key={l.label}>
-                {l.to.startsWith("#") ? (
+            {links.map((link) => (
+              <li key={link.label}>
+                {link.to.startsWith("#") ? (
                   <button
                     type="button"
-                    onClick={() => handleScroll(l.to)}
+                    onClick={() => handleScroll(link.to)}
                     className="block py-1 text-left w-full"
                   >
-                    {l.label}
+                    {link.label}
                   </button>
                 ) : (
                   <Link
-                    to={l.to}
+                    to={link.to}
                     onClick={() => setOpen(false)}
                     className="block py-1"
                   >
-                    {l.label}
+                    {link.label}
                   </Link>
                 )}
               </li>
             ))}
 
+            {/* Register */}
             <li>
               <Link
                 to="/register"

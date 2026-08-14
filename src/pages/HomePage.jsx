@@ -14,10 +14,20 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <AboutUs />
+
+      {/* ABOUT US */}
+      <section id="about">
+        <AboutUs />
+      </section>
+
       <CompetitionTypes />
       <WhoCanJoin />
-      <TimelineSection />
+
+      {/* TIMELINE */}
+      <section id="timeline">
+        <TimelineSection />
+      </section>
+
       <RegisterBefore targetDate={NEXT_DEADLINE} />
       <Sponsors />
       <FAQSection />
