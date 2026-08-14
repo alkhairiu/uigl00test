@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
   { to: "#about", label: "About Us" },
@@ -14,10 +15,12 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Detect scroll
+  /* =========================
+     Detect Scroll
+  ========================= */
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 12);
+      setScrolled(window.scrollY > 30);
     };
 
     window.addEventListener("scroll", onScroll);
@@ -27,32 +30,41 @@ export default function Navbar() {
     };
   }, []);
 
-  // Handle hash setelah pindah halaman
+  /* =========================
+     Close Mobile Menu
+  ========================= */
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
+  /* =========================
+     Handle Hash
+  ========================= */
   useEffect(() => {
     if (location.pathname !== "/" || !location.hash) return;
 
     const scrollToSection = () => {
       const element = document.querySelector(location.hash);
 
-      if (element) {
-        element.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
+      if (!element) return;
+
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     };
 
-    // Kasih waktu HomePage untuk render
     const timer = setTimeout(scrollToSection, 100);
 
     return () => clearTimeout(timer);
   }, [location.pathname, location.hash]);
 
-  // Handle About Us / Timeline
+  /* =========================
+     Scroll Navigation
+  ========================= */
   const handleScroll = (id) => {
     setOpen(false);
 
-    // Kalau sedang di Home
     if (location.pathname === "/") {
       const element = document.querySelector(id);
 
@@ -63,40 +75,87 @@ export default function Navbar() {
         });
       }
 
-      // Update URL tanpa reload
       window.history.replaceState(null, "", `/${id}`);
 
       return;
     }
 
-    // Kalau sedang di Competition atau halaman lain
     navigate(`/${id}`);
   };
 
+  /* =========================
+     Active State
+  ========================= */
+  const isActive = (link) => {
+    if (link.to.startsWith("#")) {
+      return location.hash === link.to;
+    }
+
+    return location.pathname === link.to;
+  };
+
   return (
-    <header className="fixed top-2 left-0 right-0 z-50 px-12 pt-4">
-      <nav
-        className={`mx-auto max-w-6xl flex items-center justify-between rounded-full bg-gold-gradient
-        px-4 md:px-6 py-2.5 shadow-gold transition-shadow
-        ${scrolled ? "shadow-glow-purple" : ""}`}
+    <header className="fixed left-0 right-0 top-0 z-[100] px-4 pt-3 md:px-8 md:pt-4">
+      <motion.nav
+        animate={{
+          y: scrolled ? 0 : 3,
+          scale: scrolled ? 0.985 : 1,
+        }}
+        transition={{
+          duration: 0.25,
+          ease: "easeOut",
+        }}
+        className={`
+          mx-auto
+          flex
+          max-w-6xl
+          items-center
+          justify-between
+          rounded-full
+          border
+          px-4
+          py-2.5
+          transition-all
+          duration-300
+          md:px-5
+          ${
+            scrolled
+              ? "border-gold-300/30 bg-[#071a31]/85 shadow-[0_10px_35px_rgba(0,0,0,.22)] backdrop-blur-xl"
+              : "border-gold-300/40 bg-gold-300 shadow-[0_8px_25px_rgba(0,0,0,.15)]"
+          }
+        `}
       >
         {/* =========================
             LOGO
         ========================= */}
         <Link
           to="/"
-          className="flex items-center gap-3"
-          aria-label="UI Games League Home"
           onClick={() => setOpen(false)}
+          aria-label="UI Games League Home"
+          className="group flex items-center gap-2.5"
         >
-          <img
-            src="/vite.svg"
-            alt="UI Games League Logo"
-            className="w-10 h-10 md:w-11 md:h-11 object-contain"
-          />
+          <div className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-navy-900/20 bg-white/10 md:h-10 md:w-10">
+            <img
+              src="/vite.svg"
+              alt="UI Games League Logo"
+              className="h-7 w-7 object-contain transition-transform duration-300 group-hover:scale-110 md:h-8 md:w-8"
+            />
+          </div>
 
           <span
-            className="text-[24px] text-navy-900"
+            className={`
+              hidden
+              text-lg
+              leading-none
+              transition-colors
+              sm:block
+              md:text-xl
+              ${
+                scrolled
+                  ? "text-gold-300"
+                  : "text-navy-900"
+              }
+            `}
             style={{ fontFamily: "Lucidity" }}
           >
             UI Games League
@@ -104,29 +163,99 @@ export default function Navbar() {
         </Link>
 
         {/* =========================
-            DESKTOP NAVIGATION
+            DESKTOP MENU
         ========================= */}
-        <ul className="hidden md:flex items-center gap-8 font-body font-semibold text-black text-sm">
-          {links.map((link) => (
-            <li key={link.label}>
-              {link.to.startsWith("#") ? (
-                <button
-                  type="button"
-                  onClick={() => handleScroll(link.to)}
-                  className="hover:opacity-70 transition-opacity"
-                >
-                  {link.label}
-                </button>
-              ) : (
-                <Link
-                  to={link.to}
-                  className="hover:opacity-70 transition-opacity"
-                >
-                  {link.label}
-                </Link>
-              )}
-            </li>
-          ))}
+        <ul
+          className={`
+            hidden
+            items-center
+            gap-1
+            md:flex
+            ${
+              scrolled
+                ? "text-white/70"
+                : "text-navy-900"
+            }
+          `}
+        >
+          {links.map((link) => {
+            const active = isActive(link);
+
+            return (
+              <li key={link.label}>
+                {link.to.startsWith("#") ? (
+                  <button
+                    type="button"
+                    onClick={() => handleScroll(link.to)}
+                    className={`
+                      relative
+                      rounded-full
+                      px-4
+                      py-2
+                      text-sm
+                      font-semibold
+                      transition-colors
+                      duration-300
+                      ${
+                        active
+                          ? scrolled
+                            ? "text-gold-300"
+                            : "text-navy-900"
+                          : scrolled
+                            ? "hover:text-gold-300"
+                            : "hover:text-navy-700"
+                      }
+                    `}
+                  >
+                    {link.label}
+
+                    <motion.span
+                      initial={false}
+                      animate={{
+                        width: active ? "18px" : "0px",
+                        opacity: active ? 1 : 0,
+                      }}
+                      className="absolute bottom-1 left-1/2 h-[2px] -translate-x-1/2 rounded-full bg-gold-300"
+                    />
+                  </button>
+                ) : (
+                  <Link
+                    to={link.to}
+                    className={`
+                      relative
+                      rounded-full
+                      px-4
+                      py-2
+                      text-sm
+                      font-semibold
+                      transition-colors
+                      duration-300
+                      ${
+                        active
+                          ? scrolled
+                            ? "text-gold-300"
+                            : "text-navy-900"
+                          : scrolled
+                            ? "hover:text-gold-300"
+                            : "hover:text-navy-700"
+                      }
+                    `}
+                  >
+                    {link.label}
+
+                    <motion.span
+                      initial={false}
+                      animate={{
+                        width: active ? "18px" : "0px",
+                        opacity: active ? 1 : 0,
+                      }}
+                      className="absolute bottom-1 left-1/2 h-[2px] -translate-x-1/2 rounded-full bg-gold-300"
+                    />
+                  </Link>
+                )}
+              </li>
+            );
+          })}
         </ul>
 
         {/* =========================
@@ -135,87 +264,227 @@ export default function Navbar() {
         <div className="hidden md:block">
           <Link
             to="/register"
-            className="rounded-full bg-navy-900 text-gold-300 font-body font-bold text-sm px-5 py-2 shadow-glow-purple border border-accent-purple/60 hover:bg-navy-800 transition-colors"
+            className="
+              group
+              inline-flex
+              items-center
+              justify-center
+              rounded-full
+              bg-navy-900
+              px-5
+              py-2.5
+              text-sm
+              font-bold
+              text-gold-300
+              shadow-md
+              transition-all
+              duration-300
+              hover:-translate-y-0.5
+              hover:bg-navy-800
+              hover:shadow-[0_8px_25px_rgba(0,0,0,.25)]
+            "
           >
             Register
           </Link>
         </div>
 
         {/* =========================
-            MOBILE MENU BUTTON
+            MOBILE BUTTON
         ========================= */}
         <button
-          className="md:hidden text-navy-900 p-1"
+          type="button"
+          className={`
+            flex
+            h-9
+            w-9
+            items-center
+            justify-center
+            rounded-full
+            transition-colors
+            md:hidden
+            ${
+              scrolled
+                ? "text-gold-300 hover:bg-white/5"
+                : "text-navy-900 hover:bg-black/5"
+            }
+          `}
           aria-label={open ? "Tutup menu" : "Buka menu"}
           aria-expanded={open}
           onClick={() => setOpen((prev) => !prev)}
         >
-          <svg
-            width="26"
-            height="26"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            {open ? (
+          {open ? (
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
               <path
                 d="M6 6l12 12M18 6L6 18"
                 stroke="currentColor"
-                strokeWidth="2.2"
+                strokeWidth="2"
                 strokeLinecap="round"
               />
-            ) : (
+            </svg>
+          ) : (
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
               <path
                 d="M4 7h16M4 12h16M4 17h16"
                 stroke="currentColor"
-                strokeWidth="2.2"
+                strokeWidth="2"
                 strokeLinecap="round"
               />
-            )}
-          </svg>
+            </svg>
+          )}
         </button>
-      </nav>
+      </motion.nav>
 
       {/* =========================
           MOBILE MENU
       ========================= */}
-      {open && (
-        <div className="md:hidden mx-auto max-w-6xl mt-2 rounded-2xl bg-navy-800 border border-gold-400/30 p-4 font-body">
-          <ul className="flex flex-col gap-3 text-gold-200 font-semibold">
-            {links.map((link) => (
-              <li key={link.label}>
-                {link.to.startsWith("#") ? (
-                  <button
-                    type="button"
-                    onClick={() => handleScroll(link.to)}
-                    className="block py-1 text-left w-full"
-                  >
-                    {link.label}
-                  </button>
-                ) : (
-                  <Link
-                    to={link.to}
-                    onClick={() => setOpen(false)}
-                    className="block py-1"
-                  >
-                    {link.label}
-                  </Link>
-                )}
-              </li>
-            ))}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: -10,
+              scale: 0.98,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+            }}
+            exit={{
+              opacity: 0,
+              y: -10,
+              scale: 0.98,
+            }}
+            transition={{
+              duration: 0.2,
+            }}
+            className="
+              mx-auto
+              mt-2
+              max-w-6xl
+              overflow-hidden
+              rounded-2xl
+              border
+              border-gold-300/20
+              bg-[#071a31]/95
+              p-3
+              shadow-[0_15px_40px_rgba(0,0,0,.3)]
+              backdrop-blur-xl
+              md:hidden
+            "
+          >
+            <ul className="space-y-1">
+              {links.map((link) => {
+                const active = isActive(link);
 
-            {/* Register */}
-            <li>
-              <Link
-                to="/register"
-                onClick={() => setOpen(false)}
-                className="btn-gold w-full mt-1"
-              >
-                Register
-              </Link>
-            </li>
-          </ul>
-        </div>
-      )}
+                return (
+                  <li key={link.label}>
+                    {link.to.startsWith("#") ? (
+                      <button
+                        type="button"
+                        onClick={() => handleScroll(link.to)}
+                        className={`
+                          flex
+                          w-full
+                          items-center
+                          justify-between
+                          rounded-xl
+                          px-4
+                          py-3
+                          text-left
+                          text-sm
+                          font-semibold
+                          transition-colors
+                          ${
+                            active
+                              ? "bg-gold-300/10 text-gold-300"
+                              : "text-white/70 hover:bg-white/5 hover:text-gold-300"
+                          }
+                        `}
+                      >
+                        {link.label}
+
+                        <span
+                          className={`h-1.5 w-1.5 rounded-full ${
+                            active
+                              ? "bg-gold-300"
+                              : "bg-white/10"
+                          }`}
+                        />
+                      </button>
+                    ) : (
+                      <Link
+                        to={link.to}
+                        className={`
+                          flex
+                          items-center
+                          justify-between
+                          rounded-xl
+                          px-4
+                          py-3
+                          text-sm
+                          font-semibold
+                          transition-colors
+                          ${
+                            active
+                              ? "bg-gold-300/10 text-gold-300"
+                              : "text-white/70 hover:bg-white/5 hover:text-gold-300"
+                          }
+                        `}
+                      >
+                        {link.label}
+
+                        <span
+                          className={`h-1.5 w-1.5 rounded-full ${
+                            active
+                              ? "bg-gold-300"
+                              : "bg-white/10"
+                          }`}
+                        />
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
+
+              <li className="pt-2">
+                <Link
+                  to="/register"
+                  onClick={() => setOpen(false)}
+                  className="
+                    flex
+                    w-full
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-gold-300
+                    px-4
+                    py-3
+                    text-sm
+                    font-black
+                    text-navy-900
+                    transition-all
+                    duration-300
+                    hover:bg-gold-200
+                  "
+                >
+                  Register
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
