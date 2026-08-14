@@ -175,7 +175,6 @@ export default function Hero() {
         text-center
         overflow-hidden
         {/* Latar belakang diperbarui agar lebih cerah menyerupai langit di gambar referensi */}
-        bg-gradient-to-b from-[#0C1E42] via-[#143B73] to-[#1C539E]
       "
     >
       <BackgroundStars />

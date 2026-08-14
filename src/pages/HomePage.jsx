@@ -13,25 +13,27 @@ const NEXT_DEADLINE = "2026-09-20T23:59:00";
 export default function HomePage() {
   return (
     <>
-      <Hero />
+      <section className="bg-gradient-to-b from-[#0C1E42] via-[#143B73] to-[#1C539E]">
+        <Hero />
 
-      {/* ABOUT US */}
-      <section id="about">
-        <AboutUs />
+        {/* ABOUT US */}
+        <section id="about">
+          <AboutUs />
+        </section>
+
+        <CompetitionTypes />
+        <WhoCanJoin />
+
+        {/* TIMELINE */}
+        <section id="timeline">
+          <TimelineSection />
+        </section>
+
+        <RegisterBefore targetDate={NEXT_DEADLINE} />
+        <Sponsors />
+        <FAQSection />
+        <CTASection />
       </section>
-
-      <CompetitionTypes />
-      <WhoCanJoin />
-
-      {/* TIMELINE */}
-      <section id="timeline">
-        <TimelineSection />
-      </section>
-
-      <RegisterBefore targetDate={NEXT_DEADLINE} />
-      <Sponsors />
-      <FAQSection />
-      <CTASection />
     </>
   );
 }
