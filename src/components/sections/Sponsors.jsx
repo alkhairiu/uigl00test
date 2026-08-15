@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 
 const sponsors = [
-  "NovaTech",
-  "ByteFuel",
-  "Ignite Gear",
-  "Skyline Net",
-  "Warpspeed",
-  "Circuit+",
+  "Lorem Ipsum",
+  "Lorem Ipsum",
+  "Lorem Ipsum",
+  "Lorem Ipsum",
+  "Lorem Ipsum",
+  "Lorem Ipsum",
 ];
 
 export default function Sponsors() {

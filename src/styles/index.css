@@ -19,7 +19,7 @@
 /* Harlow Solid — Subheading */
 @font-face {
   font-family: "Harlow Solid";
-  src : url("../assets/fonts/HarlowSolid.ttf") format("truetype");
+  src: url("../assets/fonts/HarlowSolid.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -46,18 +46,15 @@ body {
 
 @layer utilities {
 
-  /* Heading */
   .font-heading {
     font-family: "Lucidity", serif;
   }
 
-  /* Subheading */
   .font-subheading {
     font-family: "Harlow Solid", cursive;
     font-weight: 400;
   }
 
-  /* Body */
   .font-body {
     font-family: "Montserrat", sans-serif;
   }
@@ -196,5 +193,387 @@ textarea:focus-visible {
       transition-transform
       duration-300
       hover:-translate-y-1;
+  }
+
+
+  /* ==============================================================
+     COMPETITION
+     ============================================================== */
+
+  .competition-section {
+    position: relative;
+    width: 100%;
+    padding: 100px 0 120px;
+    overflow: hidden;
+  }
+
+
+  .competition-container {
+    width: min(1165px, calc(100% - 80px));
+    margin: 0 auto;
+  }
+
+
+  /* ==============================================================
+     COMPETITION HEADER
+     ============================================================== */
+
+  .competition-header {
+    margin-bottom: 60px;
+  }
+
+
+  .competition-eyebrow {
+    display: block;
+
+    margin-bottom: 14px;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 5px;
+
+    color: #d8a52e;
+  }
+
+
+  .competition-header h2 {
+    margin: 0;
+
+    font-family: "Lucidity", serif;
+    font-size: clamp(42px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1;
+
+    color: #f5c451;
+  }
+
+
+  .competition-line {
+    width: 100%;
+    height: 1px;
+
+    margin-top: 28px;
+
+    background: rgba(216, 165, 46, 0.5);
+  }
+
+
+  /* ==============================================================
+     GAME GRID
+     ============================================================== */
+
+  .games-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    width: 100%;
+
+    border: 1px solid rgba(216, 165, 46, 0.55);
+  }
+
+
+  /* ==============================================================
+     GAME CARD
+     ============================================================== */
+
+  .game-card {
+    position: relative;
+
+    min-height: 322px;
+
+    padding: 40px 30px;
+
+    overflow: hidden;
+
+    background: rgba(5, 22, 43, 0.55);
+
+    border-right: 1px solid rgba(216, 165, 46, 0.35);
+
+    transition:
+      background 0.35s ease,
+      transform 0.35s ease;
+  }
+
+
+  .game-card:last-child {
+    border-right: none;
+  }
+
+
+  .game-card:hover {
+    background: rgba(9, 31, 57, 0.9);
+  }
+
+
+  /* ==============================================================
+     BIG NUMBER
+     ============================================================== */
+
+  .game-number {
+    position: absolute;
+
+    top: -18px;
+    right: -8px;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 130px;
+    font-weight: 800;
+    line-height: 1;
+
+    color: rgba(26, 51, 82, 0.45);
+
+    pointer-events: none;
+    user-select: none;
+  }
+
+
+  /* ==============================================================
+     GAME IMAGE
+     ============================================================== */
+
+  .game-icon-box {
+    position: relative;
+    z-index: 2;
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(216, 165, 46, 0.55);
+
+    background: rgba(9, 31, 57, 0.65);
+
+    transition:
+      transform 0.3s ease,
+      background 0.3s ease;
+  }
+
+
+  .game-icon {
+    width: 32px;
+    height: 32px;
+
+    object-fit: contain;
+
+    display: block;
+
+    transition: transform 0.3s ease;
+  }
+
+
+  .game-card:hover .game-icon-box {
+    transform: translateY(-4px);
+
+    background: rgba(216, 165, 46, 0.08);
+  }
+
+
+  .game-card:hover .game-icon {
+    transform: scale(1.1);
+  }
+
+
+  /* ==============================================================
+     GAME CONTENT
+     ============================================================== */
+
+  .game-content {
+    position: relative;
+    z-index: 2;
+
+    margin-top: 50px;
+  }
+
+
+  .game-label {
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    color: rgba(176, 190, 207, 0.55);
+  }
+
+
+  .game-content h3 {
+    min-height: 58px;
+
+    margin: 0;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+
+    line-height: 1.3;
+
+    color: #ffffff;
+  }
+
+
+  /* ==============================================================
+     DETAIL BUTTON
+     ============================================================== */
+
+  .game-detail {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    margin-top: 30px;
+    padding: 0;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: rgba(176, 190, 207, 0.65);
+
+    transition: color 0.25s ease;
+  }
+
+
+  .game-detail:hover {
+    color: #f5c451;
+  }
+
+
+  .detail-line {
+    display: block;
+
+    width: 35px;
+    height: 1px;
+
+    background: #d8a52e;
+
+    transition: width 0.25s ease;
+  }
+
+
+  .game-detail:hover .detail-line {
+    width: 48px;
+  }
+
+
+  /* ==============================================================
+     BOTTOM DECORATION
+     ============================================================== */
+
+  .competition-bottom {
+    position: relative;
+
+    width: 100%;
+    height: 1px;
+
+    margin-top: 108px;
+
+    background: rgba(216, 165, 46, 0.08);
+  }
+
+
+  .competition-bottom span {
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    width: 10px;
+    height: 10px;
+
+    transform: translate(-50%, -50%);
+
+    background: #d8a52e;
+  }
+}
+
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+@media (max-width: 900px) {
+
+  .competition-container {
+    width: min(90%, 700px);
+  }
+
+
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  .game-card:nth-child(2) {
+    border-right: none;
+  }
+
+
+  .game-card:nth-child(-n + 2) {
+    border-bottom: 1px solid rgba(216, 165, 46, 0.35);
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .competition-section {
+    padding: 75px 0 90px;
+  }
+
+
+  .competition-container {
+    width: calc(100% - 40px);
+  }
+
+
+  .competition-header {
+    margin-bottom: 40px;
+  }
+
+
+  .competition-header h2 {
+    font-size: 38px;
+  }
+
+
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .game-card {
+    min-height: 285px;
+
+    border-right: none;
+    border-bottom: 1px solid rgba(216, 165, 46, 0.35);
+  }
+
+
+  .game-card:last-child {
+    border-bottom: none;
+  }
+
+
+  .game-number {
+    font-size: 105px;
   }
 }

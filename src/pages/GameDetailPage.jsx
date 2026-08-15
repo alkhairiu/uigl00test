@@ -210,19 +210,29 @@ function RegisterCountdown({ deadline }) {
       initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="relative mt-10 overflow-hidden border border-gold-300/25 bg-gold-300/[0.95] px-6 py-7 md:px-10"
+      className="relative mt-10 overflow-hidden border border-gold-300/25 bg-[#071a31]/95 px-6 py-10 md:px-10"
     >
-      <div className="absolute left-0 top-0 h-full w-1 bg-[#062B4F]/20" />
+      {/* Gold border accent */}
+      <div className="absolute left-0 right-0 top-0 h-[2px] bg-gold-300/50" />
 
-      <div className="mb-5 flex items-center justify-center gap-3">
-        <CalendarDays className="h-4 w-4 text-[#062B4F]/65" />
+      {/* Registration title */}
+      <div className="mb-5 text-center">
+        <p className="text-[9px] font-bold uppercase tracking-[0.4em] text-gold-300">
+          REGISTRATION
+        </p>
 
-        <h3 className="text-sm font-black uppercase tracking-[0.12em] text-[#062B4F] md:text-base">
-          Register Before
+        <h3 className="mt-4 text-3xl font-black uppercase tracking-[0.08em] text-gold-300 md:text-4xl">
+          REGISTER BEFORE
         </h3>
+
+        <div className="mx-auto mt-6 h-px w-32 bg-gold-300/60" />
       </div>
 
-      <Countdown targetDate={deadline} showSeconds={false} />
+      {/* Countdown */}
+      <Countdown
+        targetDate={deadline}
+        showSeconds={true}
+      />
     </motion.section>
   );
 }

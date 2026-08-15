@@ -1,4 +1,8 @@
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
+import { games } from "../data/games.js";
 import { iconMap } from "../assets/icons/GameIcons.jsx";
 
 function Stars() {
@@ -20,10 +24,9 @@ function Stars() {
   );
 }
 
-export default function ChoosePlanPage() {
+export default function CompetitionPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-gradient-to-b from-[#06182d] via-[#0a3158] to-[#061a2f] px-6 py-16 md:px-8 md:py-24">
-      {/* Background */}
       <div className="pointer-events-none absolute inset-0">
         <Stars />
 
@@ -33,7 +36,6 @@ export default function ChoosePlanPage() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -54,7 +56,6 @@ export default function ChoosePlanPage() {
           </p>
         </motion.div>
 
-        {/* Cards */}
         <div className="mt-12 grid grid-cols-2 gap-4 md:gap-6">
           {games.map((game, index) => {
             const Icon = iconMap[game.accentIcon];
@@ -95,17 +96,18 @@ export default function ChoosePlanPage() {
                     md:p-6
                   "
                 >
-                  {/* number */}
                   <span className="absolute right-2 top-[-12px] text-7xl font-black text-white/[0.03]">
                     {String(index + 1).padStart(2, "0")}
                   </span>
 
-                  {/* icon */}
                   <div className="flex h-11 w-11 items-center justify-center border border-gold-300/25 bg-gold-300/10 text-gold-300 transition-all duration-300 group-hover:bg-gold-300 group-hover:text-[#062B4F]">
-                    <Icon className="h-5 w-5" />
+                    {Icon ? (
+                      <Icon className="h-5 w-5" />
+                    ) : (
+                      <span className="text-xs font-bold">?</span>
+                    )}
                   </div>
 
-                  {/* content */}
                   <div className="relative z-10 mt-8">
                     <h2 className="text-lg font-black uppercase text-white transition-colors group-hover:text-gold-300 md:text-xl">
                       {game.name}
@@ -116,7 +118,6 @@ export default function ChoosePlanPage() {
                     </p>
                   </div>
 
-                  {/* footer */}
                   <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-3">
                     <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-white/25">
                       View Details

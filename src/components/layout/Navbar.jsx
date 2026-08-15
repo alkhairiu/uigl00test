@@ -15,9 +15,6 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  /* =========================
-     Detect Scroll
-  ========================= */
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 30);
@@ -30,16 +27,10 @@ export default function Navbar() {
     };
   }, []);
 
-  /* =========================
-     Close Mobile Menu
-  ========================= */
   useEffect(() => {
     setOpen(false);
   }, [location.pathname]);
 
-  /* =========================
-     Handle Hash
-  ========================= */
   useEffect(() => {
     if (location.pathname !== "/" || !location.hash) return;
 
@@ -59,9 +50,6 @@ export default function Navbar() {
     return () => clearTimeout(timer);
   }, [location.pathname, location.hash]);
 
-  /* =========================
-     Scroll Navigation
-  ========================= */
   const handleScroll = (id) => {
     setOpen(false);
 
@@ -83,9 +71,6 @@ export default function Navbar() {
     navigate(`/${id}`);
   };
 
-  /* =========================
-     Active State
-  ========================= */
   const isActive = (link) => {
     if (link.to.startsWith("#")) {
       return location.hash === link.to;
@@ -125,9 +110,6 @@ export default function Navbar() {
           }
         `}
       >
-        {/* =========================
-            LOGO
-        ========================= */}
         <Link
           to="/"
           onClick={() => setOpen(false)}
@@ -150,11 +132,7 @@ export default function Navbar() {
               transition-colors
               sm:block
               md:text-xl
-              ${
-                scrolled
-                  ? "text-gold-300"
-                  : "text-navy-900"
-              }
+              ${scrolled ? "text-gold-300" : "text-navy-900"}
             `}
             style={{ fontFamily: "Lucidity" }}
           >
@@ -162,20 +140,13 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* =========================
-            DESKTOP MENU
-        ========================= */}
         <ul
           className={`
             hidden
             items-center
             gap-1
             md:flex
-            ${
-              scrolled
-                ? "text-white/70"
-                : "text-navy-900"
-            }
+            ${scrolled ? "text-white/70" : "text-navy-900"}
           `}
         >
           {links.map((link) => {
@@ -258,9 +229,6 @@ export default function Navbar() {
           })}
         </ul>
 
-        {/* =========================
-            REGISTER DESKTOP
-        ========================= */}
         <div className="hidden md:block">
           <Link
             to="/register"
@@ -288,9 +256,6 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* =========================
-            MOBILE BUTTON
-        ========================= */}
         <button
           type="button"
           className={`
@@ -344,9 +309,6 @@ export default function Navbar() {
         </button>
       </motion.nav>
 
-      {/* =========================
-          MOBILE MENU
-      ========================= */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -416,9 +378,7 @@ export default function Navbar() {
 
                         <span
                           className={`h-1.5 w-1.5 rounded-full ${
-                            active
-                              ? "bg-gold-300"
-                              : "bg-white/10"
+                            active ? "bg-gold-300" : "bg-white/10"
                           }`}
                         />
                       </button>
@@ -446,9 +406,7 @@ export default function Navbar() {
 
                         <span
                           className={`h-1.5 w-1.5 rounded-full ${
-                            active
-                              ? "bg-gold-300"
-                              : "bg-white/10"
+                            active ? "bg-gold-300" : "bg-white/10"
                           }`}
                         />
                       </Link>

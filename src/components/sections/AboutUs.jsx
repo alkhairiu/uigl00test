@@ -50,10 +50,7 @@ export default function AboutUs() {
               md:py-14
             "
           >
-            {/* Large background number */}
-            <span className="pointer-events-none absolute -bottom-10 -left-2 text-[180px] font-black leading-none text-white/[0.025]">
-              01
-            </span>
+           
 
             <div className="relative z-10">
               <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.35em] text-gold-300/70">
@@ -82,7 +79,7 @@ export default function AboutUs() {
 
             <div className="relative z-10">
               <p className="font-body text-sm leading-7 text-white/80 md:text-base md:leading-8">
-                <span className="font-bold text-gold-300">ARENA</span> adalah
+                <span className="font-bold text-gold-300">UI Games League</span> adalah
                 kompetisi esport tahunan yang mempertemukan{" "}
                 <span className="font-semibold text-white">
                   pelajar dan mahasiswa
@@ -94,7 +91,7 @@ export default function AboutUs() {
               <div className="my-6 h-px w-full bg-gradient-to-r from-gold-300/50 via-white/10 to-transparent" />
 
               <p className="font-body text-sm leading-7 text-white/55 md:text-base md:leading-8">
-                Lebih dari sekadar turnamen, ARENA adalah ruang untuk
+                Lebih dari sekadar turnamen, UI Games League adalah ruang untuk
                 membangun{" "}
                 <span className="font-semibold text-gold-300">
                   kerja sama tim

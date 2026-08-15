@@ -3,20 +3,14 @@ import { ArrowUpRight, Users } from "lucide-react";
 
 const groups = [
   {
-    number: "01",
     title: "Pelajar SMA/SMK",
     desc: "Terbuka untuk siswa aktif jenjang SMA/SMK/sederajat se-Indonesia, dibuktikan dengan kartu pelajar.",
   },
   {
-    number: "02",
     title: "Mahasiswa",
     desc: "Terbuka untuk mahasiswa aktif dari seluruh universitas & politeknik, dibuktikan dengan KTM.",
   },
-  {
-    number: "03",
-    title: "Komunitas Umum",
-    desc: "Tim komunitas atau klub esport kampus juga dipersilakan mendaftar selama memenuhi syarat usia.",
-  },
+ 
 ];
 
 export default function WhoCanJoin() {
@@ -50,7 +44,7 @@ export default function WhoCanJoin() {
       </motion.div>
 
       {/* Cards */}
-      <div className="grid gap-px overflow-hidden border border-gold-300/20 bg-gold-300/20 md:grid-cols-3">
+      <div className="grid gap-px overflow-hidden border border-gold-300/20 bg-gold-300/20 md:grid-cols-2">
         {groups.map((group, index) => (
           <motion.div
             key={group.title}
