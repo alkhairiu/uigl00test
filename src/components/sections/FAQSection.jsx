@@ -81,18 +81,6 @@ export default function FAQSection() {
           </div>
 
           {/* small visual */}
-          <div className="mt-10 hidden md:block">
-            <div className="border-l border-gold-300/30 pl-5">
-              <p className="text-xs font-semibold text-white/60">
-                Still have questions?
-              </p>
-
-              <p className="mt-1 max-w-xs text-[11px] leading-5 text-white/25">
-                Pastikan selalu mengikuti informasi terbaru dari kanal resmi
-                penyelenggara.
-              </p>
-            </div>
-          </div>
         </motion.div>
 
         {/* ================= RIGHT ================= */}

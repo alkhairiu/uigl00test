@@ -4,11 +4,11 @@ import { useEffect, useMemo, useRef, useState } from "react";
 const stats = [
   {
     label: "Peserta Terdaftar",
-    value: "1.200+",
+    value: "xx",
   },
   {
     label: "Total Hadiah",
-    value: "Rp 53 Juta",
+    value: "Rp xx Juta",
   },
   {
     label: "Kategori Game",
