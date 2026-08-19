@@ -79,9 +79,6 @@ export default function CompetitionTypes() {
 
               {/* Text */}
               <div className="relative z-10 mt-12">
-                <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.28em] text-white/30">
-                  TITLE 0{index + 1}
-                </p>
 
                 <h3 className="max-w-[170px] text-xl font-black uppercase leading-tight tracking-tight text-white md:text-2xl">
                   {game.name}

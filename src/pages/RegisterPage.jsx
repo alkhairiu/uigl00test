@@ -17,25 +17,25 @@ const games = [
     id: "pes",
     name: "eFootball",
     image: "/efootball.svg",
-    members: 3,
+    members: 2,
   },
   {
     id: "pubg",
     name: "PUBG Mobile",
     image: "/pubg-mobile.svg",
-    members: 3,
+    members: 4,
   },
   {
     id: "ml",
     name: "Mobile Legends",
     image: "/mobile-legends.svg",
-    members: 4,
+    members: 5,
   },
   {
     id: "valo",
     name: "Valorant",
     image: "/valorant.svg",
-    members: 4,
+    members: 5,
   },
 ];
 

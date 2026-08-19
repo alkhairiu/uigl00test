@@ -109,10 +109,7 @@ export default function CTASection() {
         />
       ))}
 
-      {/* =========================================================
-          DECORATIVE SIDE ICONS
-      ========================================================= */}
-
+      
       <motion.div
         animate={{
           y: [0, -8, 0],
@@ -125,27 +122,10 @@ export default function CTASection() {
         }}
         className="pointer-events-none absolute left-[8%] top-1/2 hidden -translate-y-1/2 md:block"
       >
-        <div className="flex h-16 w-16 items-center justify-center border border-navy-900/20 bg-white/10 backdrop-blur-sm">
-          <Shield className="h-7 w-7 text-navy-900/40" />
-        </div>
+        
       </motion.div>
 
-      <motion.div
-        animate={{
-          y: [0, 8, 0],
-          rotate: [0, -3, 0],
-        }}
-        transition={{
-          duration: 4.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="pointer-events-none absolute right-[8%] top-1/2 hidden -translate-y-1/2 md:block"
-      >
-        <div className="flex h-16 w-16 items-center justify-center border border-navy-900/20 bg-white/10 backdrop-blur-sm">
-          <Swords className="h-7 w-7 text-navy-900/40" />
-        </div>
-      </motion.div>
+      
 
       {/* =========================================================
           MAIN CONTENT
@@ -230,20 +210,7 @@ export default function CTASection() {
             DESCRIPTION
         ======================================================= */}
 
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.35, duration: 0.6 }}
-          className="mx-auto mt-8 max-w-xl font-body text-sm leading-7 text-navy-900/70 md:text-base"
-        >
-          Jangan tunggu bracket ditutup. Pilih game, kumpulkan timmu, dan
-          amankan slotmu di{" "}
-          <span className="font-black text-navy-900">
-            ARENA 2026
-          </span>{" "}
-          sekarang.
-        </motion.p>
+       
 
         {/* =======================================================
             CTA BUTTON

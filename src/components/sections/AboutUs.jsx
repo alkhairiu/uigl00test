@@ -80,39 +80,15 @@ export default function AboutUs() {
             <div className="relative z-10">
               <p className="font-body text-sm leading-7 text-white/80 md:text-base md:leading-8">
                 <span className="font-bold text-gold-300">UI Games League</span> adalah
-                kompetisi esport tahunan yang mempertemukan{" "}
-                <span className="font-semibold text-white">
-                  pelajar dan mahasiswa
-                </span>{" "}
-                dari berbagai sekolah dan kampus untuk bertanding di empat
-                kategori game populer.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolorum dolores, rem molestiae perspiciatis aut ad assumenda blanditiis
+                 doloremque temporibus optio repellendus laborum veritatis ex nostrum totam, culpa numquam delectus!
               </p>
 
               <div className="my-6 h-px w-full bg-gradient-to-r from-gold-300/50 via-white/10 to-transparent" />
 
-              <p className="font-body text-sm leading-7 text-white/55 md:text-base md:leading-8">
-                Lebih dari sekadar turnamen, UI Games League adalah ruang untuk
-                membangun{" "}
-                <span className="font-semibold text-gold-300">
-                  kerja sama tim
-                </span>
-                , mengasah{" "}
-                <span className="font-semibold text-gold-300">strategi</span>,
-                dan membentuk{" "}
-                <span className="font-semibold text-gold-300">
-                  komunitas esport yang sehat dan kompetitif
-                </span>
-                .
-              </p>
+            
 
-              {/* Bottom accent */}
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "90px" }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="mt-8 h-[2px] bg-gold-300"
-              />
+             
             </div>
           </div>
         </div>

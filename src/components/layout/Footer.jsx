@@ -34,9 +34,9 @@ export default function Footer() {
 
             {/* DESCRIPTION */}
             <p className="max-w-md font-body text-sm leading-6 text-white/60">
-              Wadah kompetisi esport antar sekolah & kampus. Satu panggung
-              untuk Mobile Legends, PUBG Mobile, Valorant, dan eFootball —
-              dari babak penyisihan sampai grand final.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+              Consequatur quia placeat blanditiis perferendis, vero possimus, vel magnam consectetur accusantium
+               reprehenderit debitis numquam, corrupti nihil eos minima quibusdam voluptatem. Dolore, amet!
             </p>
 
             {/* DECORATIVE LINE */}
