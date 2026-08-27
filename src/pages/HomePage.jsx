@@ -493,9 +493,6 @@ export default function HomePage() {
             <TimelineSection />
           </section>
 
-          {/* COUNTDOWN */}
-          <RegisterBefore targetDate={NEXT_DEADLINE} />
-
           <SectionDivider />
 
           {/* SPONSORS */}
